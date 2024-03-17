@@ -19,7 +19,6 @@ class UserController extends Controller
         ];
         UserModel::create($data); //tambahkan data ke tabel m_user
         
-        //coba akses model usermodel
         $user = UserModel::all(); //ambil semua data dari tabel m_user
         return view('user', ['data' => $user]);
     }
