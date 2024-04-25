@@ -1,36 +1,54 @@
-{{-- @extends('layouts.app')
+@extends('layout.app')
+
 @section('subtitle', 'Kategori')
 @section('content_header_title', 'Kategori')
-@section('content_header_subtitle', 'Create')
-@section('content_body')
+@section('content_header_subtitle', 'Daftar Kategori')
+
+@section('content')
     <div class="container">
         <div class="card card-primary">
             <div class="card-header">
                 <h3 class="card-title">Buat Kategori Baru</h3>
-            </div>
-            <form action="{{ url('kategori/update', $kategori->kategori_id) }}" method="POST">
-                @csrf
-                <div class="card-body">
-                    <div class="form-group">
-                        <label for="kodeKategori">kategori Id</label>
-                        <input type="text" class="form-control" id="kodeKategori" name="id" value="{{$kategori->kategori_id}}"
-                            placeholder="Kategori Id" disabled>
-                    </div>
-                    <div class="form-group">
-                        <label for="kodeKategori">Kode Kategori</label>
-                        <input type="text" class="form-control" id="kodeKategori" name="kodeKategori" value="{{$kategori->kategori_kode}}"
-                            placeholder="Kode Kategori" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="namaKategori">Nama Kategori</label>
-                        <input type="text" class="form-control" id="namaKategori" name="namaKategori" value="{{$kategori->kategori_nama}}"
-                            placeholder="Nama Kategori" required>
+                <form method="post" action="../kategori">
+                </div>
+                    <div class="card-body">
+                        @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->category->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+                        <div class="form-group">
+
+                            <label for="kode_kategori">Kode Kategori</label>
+                            {{-- <input type="text" class="form-control" name="kodeKategori" id="KodeKategori"
+                                placeholder="Kode Kategori"> --}}
+
+                                <input type="text" class="form-control @error('kategori_kode') is-invalid @enderror" id="kategori_kode" name="kategori_kode"
+                                placeholder="Kode Kategori">
+                            @error('kategori_kode', 'category')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="form-group">
+                            <label for="nama_kategori">Nama Kategori</label>
+                            {{-- <input type="text" class="form-control" name="namaKategori" id="NamaKategori"
+                                placeholder="Nama Kategori"> --}}
+                                <input type="text" class="form-control @error('kategori_nama') is-invalid @enderror" id="kategori_nama" name="kategori_nama"
+                                placeholder="Nama Kategori">
+                            @error('kategori_nama', 'category')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror
+                        </div>
+
                     </div>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Simpan</button>
                     </div>
-            </form>
-        </div>
-    </div>
-@endsection
-   --}}
+                </form>
+
+            </div>
+        @endsection
