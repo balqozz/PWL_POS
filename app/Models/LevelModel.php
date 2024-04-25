@@ -10,11 +10,15 @@ class LevelModel extends Model
 {
     use HasFactory;
 
-    protected $table = "m_level";
-    protected $primaryKey = "level_id";
+    protected $table = 'm_level';
+    protected $primaryKey = 'level_id';
 
-    public function users(): HasMany
+    protected $guarded = [];
+
+    public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasMany(UserModel::class, 'level_id', 'level_id');
     }
+
+    protected $fillable = ['level_kode', 'level_nama'];
 }

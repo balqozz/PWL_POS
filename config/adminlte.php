@@ -294,12 +294,16 @@ return [
     */
 
     'menu' => [
-        // Navbar items:
         [
+            'submenu' => [
+            
+        // Navbar items:
+        
             'type' => 'navbar-search',
             'text' => 'search',
             'topnav_right' => true,
-        ],
+        ]
+    ],
         [
             'type' => 'fullscreen-widget',
             'topnav_right' => true,
@@ -322,13 +326,22 @@ return [
             'label' => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'MANAGE CATEGORIES'],
         [
-            'text' => 'Category',
-            'url' => '/kategori',
-            'icon' => 'fas fa-fw fa-file',
+            'text' => 'm_user',
+            'url' => '/m_user',
         ],
+        [
+            'text' => 'Level',
+            'url' => '/level',
+        ],
+        // Tugas nomor 2 js 5
         ['header' => 'account_settings'],
+        [
+            'text' => 'Manage Kategori',
+            'url' => 'kategori',
+            'icon' => 'far fa-fw fa-folder',
+        ],
+        //--
         [
             'text' => 'profile',
             'url' => 'admin/settings',
@@ -394,7 +407,6 @@ return [
             'url' => '#',
         ],
     ],
-
     /*
     |--------------------------------------------------------------------------
     | Menu Filters
