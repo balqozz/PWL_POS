@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\DataTables\KategoriDataTable;
 
-class KategoriController extends Controller
-{
-    public function index()
-    {
+class KategoriController extends Controller {
+    // public function index() {
         /*$data = [
             'category_kode' => 'SNK',
             'category_nama' => 'Snack/Makanan Ringan',
@@ -23,7 +22,10 @@ class KategoriController extends Controller
         //$row = DB::table('m_category')->where('category_kode', 'SNK')->delete();
         //return 'Delete data berhasil. Jumlah data yang diahapus: '.$row.' baris';
 
-        $data = DB::table('m_category')->get();
-        return view('kategori', ['data' => $data]);
+        // $data = DB::table('m_category')->get();
+        // return view('kategori', ['data' => $data]);
+    
+    public function index(KategoriDataTable $dataTable) {
+        return $dataTable->render('kategori.index');
     }
 }
