@@ -3,7 +3,6 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\RedirectResponse;
 
 class StorePostRequest extends FormRequest
 {
@@ -12,7 +11,7 @@ class StorePostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,33 +24,6 @@ class StorePostRequest extends FormRequest
         return [
             'kategori_kode' => 'required',
             'kategori_nama' => 'required',
-            'username' => 'required',
-            'level_id' => 'required',
-            'nama' => 'required',
-            'password' => 'required',
-            'level_kode' => 'required',
-            'level_nama' => 'required',
         ];
     }
-
-    public function store(StorePostRequest $request) : RedirectResponse
-    {
-        // The incoming request is valid..
-        
-
-        // Retrieve the validated input data..
-        $validated = $request->safe()->only(['kategori_kode', 'kategori_nama']);
-        $validated = $request->safe()->except(['kategori_kode', 'kategori_nama']);
-        $validated = $request->safe()->only(['username', 'level_id', 'nama', 'password']);
-        $validated = $request->safe()->except(['username', 'level_id', 'nama', 'password']);
-        $validated = $request->safe()->only(['level_kode', 'level_nama']);
-        $validated = $request->safe()->except(['level_kode', 'level_nama']);
-
-        // Store the podt
-
-        return redirect('/kategori');
-        return redirect('/m_user');
-        return redirect('/level');
-    }
-
 }
