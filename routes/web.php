@@ -1,14 +1,9 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\KategoriController;
-use App\Http\Controllers\M_userControllers;
 use App\Http\Controllers\LevelController;
-use App\Http\Controllers\POSController;
-use App\Http\Controllers\UserController as ControllersUserController;
-use Illuminate\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
-//use App\Http\Controllers\WelcomeController;
-use Illuminate\Http\Request\StorePostRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,50 +20,25 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/level', [LevelController::class, 'index']);
+//Practicum 4
+//2
+Route::get('/level', [LevelController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index']);
+Route::get('/user', [UserController::class, 'index']);
 
+//J4 Practicum 2.6
+Route::get('/user/tambah', [UserController::class, 'tambah'])->name('user/tambah');
+Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('/user/ubah');
+Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('/user/hapus');
+Route::get('/user', [UserController::class, 'index'])->name('/user');
+Route::post('/user/tambah_simpan', [UserController::class, 'tambahSimpan'])->name('/user/tambah_simpan');
+Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->name('/user/ubah_simpan');
 
-
-// Route::get('/user', [ControllersUserController::class, 'index']);
-
-// Route::get('/user/tambah', [ControllersUserController::class, 'tambah']);
-
-// Route::put('/user/tambah_simpan', [ControllersUserController::class, 'tambah_simpan']);
-
-// Route::get('/user/ubah/{id}', [ControllersUserController::class, 'ubah']);
-
-// Route::put('/user/ubah_simpan/{id}', [ControllersUserController::class, 'ubah_simpan']);
-
-// Route::get('/user/hapus/{id}', [ControllersUserController::class, 'hapus']);
-
-// Route::get('/kategori/create', [KategoriController::class, 'create']);
-// Route::post('/kategori', [KategoriController::class, 'store']);
-
-
-// Route::post('/kategori', [KategoriController::class, 'store']);
-
-//js 5 no 3
-Route::get('/edit/{id}', [KategoriController::class, 'edit'])->name('kategori.edit');
-Route::put('/update/{id}', [KategoriController::class, 'update'])->name('kategori.update');
-//--
-//JS 5 no 4
-Route::get('/delete/{id}', [KategoriController::class, 'destroy'])->name('kategori.delete');
-
-// JS 6
-Route::get('/m_user', [M_userControllers::class, 'index']);
-Route::get('/m_user/create', [M_userControllers::class, 'create']);
-Route::post('/m_user', [M_userControllers::class, 'store']);
-Route::get('/m_user/edit/{id}', [M_userControllers::class, 'edit'])->name('user.edit');
-Route::put('/m_user/update/{id}', [M_userControllers::class, 'update'])->name('user.update');
-Route::get('/m_user/delete/{id}', [M_userControllers::class, 'delete'])->name('user.delete');
-
-Route::get('/level/create', [LevelController::class, 'create']);
-Route::post('/level/create', [LevelController::class, 'getLevel']);
-
+//J5 Practicum 3
 Route::get('/kategori/create', [KategoriController::class, 'create']);
 Route::post('/kategori', [KategoriController::class, 'store']);
-
-Route::resource('m_user', POSController::class);
-
-//JS 7
-Route::get('/', [WelcomeController::class, 'index']);
+Route::get('/kategori', [KategoriController::class, 'index'])->name('/kategori');
+Route::post('/kategori',[KategoriController::class, 'store']);
+Route::get('/kategori/edit/{id}', [KategoriController::class, 'edit'])->name('kategori/edit');
+Route::put('/kategori/edit/{id}', [KategoriController::class, 'update'])->name('/kategori/simpan');
+Route::get('/kategori/delete/{id}', [KategoriController::class, 'destroy']);
