@@ -1,7 +1,7 @@
 @extends('layouts.app') 
 
-@section('subtitle', 'Level')
-@section('content_header_title', 'Level')
+@section('subtitle', 'Kategori')
+@section('content_header_title', 'User')
 @section('content_header_subtitle', 'Tambah')
 
 {{-- @section('content_header') 
@@ -11,22 +11,22 @@
 @section('content') 
 <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Form Tambah Level</h3>
+      <h3 class="card-title">Form Tambah User</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
     <form>
       <div class="card-body">
         <div class="form-group">
-          <label for="exampleInputEmail1">Level ID</label>
+          <label for="exampleInputEmail1">Username</label>
           <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Masukkan Username">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Level Kode</label>
+          <label for="exampleInputPassword1">Nama</label>
           <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Nama">
         </div>
         <div class="form-group">
-          <label for="exampleInputPassword1">Level Nama</label>
+          <label for="exampleInputPassword1">Level ID</label>
           <input type="Number" class="form-control" id="exampleInputPassword1" placeholder="Masukkan Level ID">
         </div>
       </div>
