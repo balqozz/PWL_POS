@@ -2,23 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\DataTables\UserDataTable;
-use App\Models\User;
-use Illuminate\Http\Request;
 use App\Models\m_user;
-use App\Models\UserModel;
+use Illuminate\Http\Request;
 
 class POSController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(UserDataTable $dataTable)
+    public function index()
     {
-        return $dataTable->render('m_user.index');
-        //fungsi eloquent menampilkan data menggunakan pagination
-        // $useri = m_user::all(); // Mengambil semua isi tabel
-        // return view('m_user.index', compact('useri'))->with('i');
+        $useri = m_user::all();
+        return view('m_user.index', compact('useri'))->with('i');
     }
 
     /**
@@ -34,18 +29,13 @@ class POSController extends Controller
      */
     public function store(Request $request)
     {
-        //melakukan validasi data
         $request->validate([
-            'user_id' => 'max 20',
-            'username' => 'required',
-            'nama' => 'required',
-            'password' => 'required',
-            'level_id' => 'required'
+            'user_id'=>'max 20',
+            'username'=>'required',
+            'nama'=>'required,'
         ]);
-        //fungsi eloquent untuk menambah data
         m_user::create($request->all());
-        return redirect()->route('m_user.index')
-            ->with('success', 'user Berhasil Ditambahkan');
+        return redirect()->route('m_user.index')->with('success', 'user Berhasil Ditambahkan');
     }
 
     /**
@@ -72,16 +62,12 @@ class POSController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
-            'level_id' => 'required',
-            'username' => 'required',
-            'nama' => 'required',
-            'password' => 'required',
+            'username'=>'required',
+            'nama'=>'required',
+            'password'=>'required'
         ]);
-        //fungsi eloquent untuk mengupdate data inputan kita
         m_user::find($id)->update($request->all());
-        //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->route('m_user.index')
-            ->with('success', 'Data Berhasil Diupdate');
+        return redirect()->route('m_user.index')->with('success', 'Data Berhasil Diupdate');
     }
 
     /**
@@ -89,9 +75,7 @@ class POSController extends Controller
      */
     public function destroy(string $id)
     {
-        //$useri = m_user::findOrFail($id)->delete();
-        UserModel::findOrFail($id)->delete();
-        return \redirect()->route('m_user.index')
-            ->with('success', 'data Berhasil Dihapus');
+        $useri=m_user::findOrFail($id)->delete();
+        return redirect()->route('m_user.index')->with('success', 'data Berhasil Dihapus');
     }
 }
